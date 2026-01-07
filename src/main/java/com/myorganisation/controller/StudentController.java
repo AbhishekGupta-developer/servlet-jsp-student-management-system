@@ -26,20 +26,21 @@ public class StudentController extends HttpServlet {
         out.println("<h4>GET API</h4>");
     }
 
-//    @Override
-//    public void doPost(HttpServletRequest req, HttpServletResponse res) throws IOException {
-//        res.setContentType("application/json");
-//
-//        String name = req.getParameter("name");
-//        Long phone = Long.valueOf(req.getParameter("phone"));
-//        String email = req.getParameter("email");
-//
-//        String response = studentModel.registerStudent(name, phone, email);
-//        String jsonResponse = "{\"status\": \"" + response + "\"}";
-//
-//        PrintWriter out = res.getWriter();
-//        out.println(jsonResponse);
-//    }
+    @Override
+    public void doPost(HttpServletRequest req, HttpServletResponse res) throws IOException {
+        res.setContentType("application/json");
+
+        String name = req.getParameter("name");
+        Long phone = Long.valueOf(req.getParameter("phone"));
+        String email = req.getParameter("email");
+        Integer courseId = Integer.parseInt(req.getParameter("course"));
+
+        String response = studentModel.registerStudent(name, phone, email, courseId);
+        String jsonResponse = "{\"status\": \"" + response + "\"}";
+
+        PrintWriter out = res.getWriter();
+        out.println(jsonResponse);
+    }
 
     @Override
     public void doPut(HttpServletRequest req, HttpServletResponse res) throws IOException {
