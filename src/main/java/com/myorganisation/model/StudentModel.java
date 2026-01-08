@@ -1,9 +1,6 @@
 package com.myorganisation.model;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 
 public class StudentModel {
     DbConnection dbConnection = null;
@@ -51,6 +48,53 @@ public class StudentModel {
         } catch(SQLException e) {
             System.out.println("An exception occurred during insertion: " + e.getMessage());
             return "Student registration failed";
+        }
+    }
+
+    public String getAllStudents() {
+        String response = "";
+        String message = "Student not found";
+        boolean isDataFound = false;
+        String sqlQuery = "SELECT * FROM students";
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(sqlQuery);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            StringBuilder listOfJson = new StringBuilder("[");
+
+            while (resultSet.next()) {
+                isDataFound = true;
+                int id = resultSet.getInt("id");
+                String name = resultSet.getString("name");
+                long phone = resultSet.getLong("phone");
+                String email = resultSet.getString("email");
+                int courseId = resultSet.getInt("course_id");
+
+                String course = "{" +
+                        "\"id\": \"" + id + "\"," +
+                        "\"name\": \"" + name + "\"," +
+                        "\"phone\": \"" + phone + "\"," +
+                        "\"email\": \"" + email + "\"," +
+                        "\"courseId\": \"" + courseId + "\"" +
+                        "}";
+
+                listOfJson.append(course).append(",");
+            }
+            listOfJson.deleteCharAt(listOfJson.length() - 1);
+            listOfJson.append("]");
+
+            response = listOfJson.toString();
+        } catch(SQLException e) {
+            isDataFound = false;
+            System.out.println("An exception occurred during fetching students details: " + e.getMessage());
+            message = "An error occurred. Please try again later";
+        }
+
+        if(isDataFound) {
+            return response;
+        } else {
+            return  "{" +
+                    "\"message\": \"" + message + "\"" +
+                    "}";
         }
     }
  }

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" %>
   <html>
+
   <head>
     <title>Register student</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
@@ -54,11 +55,9 @@
               <a class="dropdown-item" href="#">DSA with Java</a>
             </div>
           </li>
-          <!--
-                <li class="nav-item">
-                    <a class="nav-link disabled" href="#">Disabled</a>
-                </li>
-                -->
+          <!-- <li class="nav-item">
+              <a class="nav-link disabled" href="#">Disabled</a>
+          </li> -->
         </ul>
         <form class="form-inline my-2 my-lg-0">
           <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
@@ -67,117 +66,126 @@
       </div>
     </nav>
     <div class="container">
-        <br>
-        <h1>Register Student</h1>
-        <form>
-          <div class="form-row">
-            <div class="form-group col-md-6">
-                <label for="studentName">Name</label>
-                <input type="text" class="form-control" id="studentName" required>
-              </div>
-            <div class="form-group col-md-6">
-              <label for="studentEmail">Email</label>
-              <input type="email" class="form-control" id="studentEmail" required>
-            </div>
+      <br>
+      <h1>Register Student</h1>
+      <form>
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="studentName">Name</label>
+            <input type="text" class="form-control" id="studentName" required>
           </div>
-          <div class="form-row">
-              <div class="form-group col-md-4">
-                <label for="studentPhone">Phone</label>
-                <input type="number" class="form-control" id="studentPhone" placeholder="+91 - xxxxx - xxxxx" required>
-              </div>
-              <div class="form-group col-md-2">
-                  <label for="studentName">Course Id</label>
-                  <input type="number" class="form-control" id="studentCourse" required>
-                </div>
+          <div class="form-group col-md-6">
+            <label for="studentEmail">Email</label>
+            <input type="email" class="form-control" id="studentEmail" required>
           </div>
-          <button type="submit" class="btn btn-primary" onclick="registerStudent()">Register</button>
-        </form>
-        <div id="successAlert" class="alert alert-success" role="alert" style="display: none;">
         </div>
-        <div id="errorAlert" class="alert alert-danger" role="alert" style="display: none;">
+        <div class="form-row">
+          <div class="form-group col-md-4">
+            <label for="studentPhone">Phone</label>
+            <input type="number" class="form-control" id="studentPhone" placeholder="+91 - xxxxx - xxxxx" required>
+          </div>
+          <div class="form-group col-md-2">
+            <label for="studentName">Course Id</label>
+            <input type="number" class="form-control" id="studentCourse" required>
+          </div>
         </div>
-        <br><br><br><br><br><br>
+        <button type="submit" class="btn btn-primary" onclick="registerStudent()">Register</button>
+      </form>
+      <div id="successAlert" class="alert alert-success" role="alert" style="display: none;">
+      </div>
+      <div id="errorAlert" class="alert alert-danger" role="alert" style="display: none;">
+      </div>
+      <br><br><br><br><br><br>
     </div>
+    
     <footer class="pt-4 my-md-5 pt-md-5 border-top">
-            <div class="row">
-              <div class="col-12 col-md">
-                <img class="mb-2" src="images/logo.png" alt="" width="100">
-                <small class="d-block mb-3 text-muted">© 2026 - 2030</small>
-              </div>
-              <div class="col-6 col-md">
-                <h5>Features</h5>
-                <ul class="list-unstyled text-small">
-                  <li><a class="text-muted" href="#">Cool stuff</a></li>
-                  <li><a class="text-muted" href="#">Random feature</a></li>
-                  <li><a class="text-muted" href="#">Team feature</a></li>
-                  <li><a class="text-muted" href="#">Stuff for developers</a></li>
-                  <li><a class="text-muted" href="#">Another one</a></li>
-                  <li><a class="text-muted" href="#">Last time</a></li>
-                </ul>
-              </div>
-              <div class="col-6 col-md">
-                <h5>Resources</h5>
-                <ul class="list-unstyled text-small">
-                  <li><a class="text-muted" href="#">Resource</a></li>
-                  <li><a class="text-muted" href="#">Resource name</a></li>
-                  <li><a class="text-muted" href="#">Another resource</a></li>
-                  <li><a class="text-muted" href="#">Final resource</a></li>
-                </ul>
-              </div>
-              <div class="col-6 col-md">
-                <h5>About</h5>
-                <ul class="list-unstyled text-small">
-                  <li><a class="text-muted" href="#">Team</a></li>
-                  <li><a class="text-muted" href="#">Locations</a></li>
-                  <li><a class="text-muted" href="#">Privacy</a></li>
-                  <li><a class="text-muted" href="#">Terms</a></li>
-                </ul>
-              </div>
-            </div>
-          </footer>
+      <div class="container">
+        <div class="row">
 
-          <script>
-          function registerStudent() {
+          <div class="col-12 col-md">
+            <img class="mb-2" src="images/logo.png" alt="Logo" width="100">
+            <small class="d-block mb-3 text-muted">© 2026 - 2030</small>
+          </div>
 
-              event.preventDefault(); // stop form reload
+          <div class="col-6 col-md">
+            <h5>Features</h5>
+            <ul class="list-unstyled text-small">
+              <li><a class="text-muted" href="#">Cool stuff</a></li>
+              <li><a class="text-muted" href="#">Random feature</a></li>
+              <li><a class="text-muted" href="#">Team feature</a></li>
+              <li><a class="text-muted" href="#">Stuff for developers</a></li>
+              <li><a class="text-muted" href="#">Another one</a></li>
+              <li><a class="text-muted" href="#">Last time</a></li>
+            </ul>
+          </div>
 
-              let name = document.getElementById("studentName").value;
-              let email = document.getElementById("studentEmail").value;
-              let phone = document.getElementById("studentPhone").value;
-              let course = document.getElementById("studentCourse").value;
+          <div class="col-6 col-md">
+            <h5>Resources</h5>
+            <ul class="list-unstyled text-small">
+              <li><a class="text-muted" href="#">Resource</a></li>
+              <li><a class="text-muted" href="#">Resource name</a></li>
+              <li><a class="text-muted" href="#">Another resource</a></li>
+              <li><a class="text-muted" href="#">Final resource</a></li>
+            </ul>
+          </div>
 
-              fetch("<%=request.getContextPath()%>/api/student", {
-                  method: "POST",
-                  headers: {
-                      "Content-Type": "application/x-www-form-urlencoded"
-                  },
-                  body: "name=" + name +
-                        "&email=" + email +
-                        "&phone=" + phone +
-                        "&course=" + course
-              })
-              .then(response => response.json())
-              .then(data => {
+          <div class="col-6 col-md">
+            <h5>About</h5>
+            <ul class="list-unstyled text-small">
+              <li><a class="text-muted" href="#">Team</a></li>
+              <li><a class="text-muted" href="#">Locations</a></li>
+              <li><a class="text-muted" href="#">Privacy</a></li>
+              <li><a class="text-muted" href="#">Terms</a></li>
+            </ul>
+          </div>
 
-                  // hide both alerts first
-                  document.getElementById("successAlert").style.display = "none";
-                  document.getElementById("errorAlert").style.display = "none";
+        </div>
+      </div>
+    </footer>
 
-                  if (data.status.toLowerCase().includes("success")) {
-                      document.getElementById("successAlert").innerText = data.status;
-                      document.getElementById("successAlert").style.display = "block";
-                  } else {
-                      document.getElementById("errorAlert").innerText = data.status;
-                      document.getElementById("errorAlert").style.display = "block";
-                  }
-              })
-              .catch(error => {
-                  document.getElementById("errorAlert").innerText = "Something went wrong!";
-                  document.getElementById("errorAlert").style.display = "block";
-                  console.log("Error:", error);
-              });
-          }
-          </script>
+
+    <script>
+      function registerStudent() {
+
+        event.preventDefault(); // stop form reload
+
+        let name = document.getElementById("studentName").value;
+        let email = document.getElementById("studentEmail").value;
+        let phone = document.getElementById("studentPhone").value;
+        let course = document.getElementById("studentCourse").value;
+
+        fetch("<%=request.getContextPath()%>/api/student", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/x-www-form-urlencoded"
+          },
+          body: "name=" + name +
+            "&email=" + email +
+            "&phone=" + phone +
+            "&course=" + course
+        })
+          .then(response => response.json())
+          .then(data => {
+
+            // hide both alerts first
+            document.getElementById("successAlert").style.display = "none";
+            document.getElementById("errorAlert").style.display = "none";
+
+            if (data.status.toLowerCase().includes("success")) {
+              document.getElementById("successAlert").innerText = data.status;
+              document.getElementById("successAlert").style.display = "block";
+            } else {
+              document.getElementById("errorAlert").innerText = data.status;
+              document.getElementById("errorAlert").style.display = "block";
+            }
+          })
+          .catch(error => {
+            document.getElementById("errorAlert").innerText = "Something went wrong!";
+            document.getElementById("errorAlert").style.display = "block";
+            console.log("Error:", error);
+          });
+      }
+    </script>
   </body>
 
   </html>
