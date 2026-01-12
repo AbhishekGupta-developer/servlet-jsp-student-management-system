@@ -72,11 +72,11 @@
         <div class="form-row">
           <div class="form-group col-md-6">
             <label for="studentName">Name</label>
-            <input type="text" class="form-control" id="studentName" required>
+            <input type="text" class="form-control" id="studentName" placeholder="Enter your full name" required>
           </div>
           <div class="form-group col-md-6">
             <label for="studentEmail">Email</label>
-            <input type="email" class="form-control" id="studentEmail" required>
+            <input type="email" class="form-control" id="studentEmail" placeholder="Enter your email" required>
           </div>
         </div>
         <div class="form-row">
@@ -86,10 +86,11 @@
           </div>
           <div class="form-group col-md-2">
             <label for="studentName">Course Id</label>
-            <input type="number" class="form-control" id="studentCourse" required>
+            <input type="number" class="form-control" id="studentCourse" placeholder="Enter Course ID" required>
           </div>
         </div>
         <button type="submit" class="btn btn-primary" onclick="registerStudent()">Register</button>
+        <button type="reset" class="btn btn-danger">Cancel</button>
       </form>
       <div id="successAlert" class="alert alert-success" role="alert" style="display: none;">
       </div>
