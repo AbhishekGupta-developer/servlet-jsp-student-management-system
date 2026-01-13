@@ -66,33 +66,37 @@
       </div>
     </nav>
     <div class="container">
+      <%
+        String studentId = request.getParameter("id");
+      %>
       <br>
       <h1>Update Student</h1>
-    <div class="alert alert-primary" role="alert">
-        Student Id: 1
-    </div>
+    
       <form>
+        <div class="form-row">
+          <div class="form-group col-md-12 alert alert-primary" role="alert"><h3 style="padding-left: 10px;">Student ID: <%= studentId %></h3></div>
+        </div>
         <div class="form-row">
           <div class="form-group col-md-6">
             <label for="studentName">Name</label>
-            <input type="text" class="form-control" id="studentName" placeholder="Enter your full name" value="" required>
+            <input type="text" class="form-control" id="studentName" placeholder="Enter your full name" required>
           </div>
           <div class="form-group col-md-6">
             <label for="studentEmail">Email</label>
-            <input type="email" class="form-control" id="studentEmail" placeholder="Enter your email" value="" required>
+            <input type="email" class="form-control" id="studentEmail" placeholder="Enter your email" required>
           </div>
         </div>
         <div class="form-row">
           <div class="form-group col-md-4">
             <label for="studentPhone">Phone</label>
-            <input type="number" class="form-control" id="studentPhone" placeholder="+91 - xxxxx - xxxxx" value="" required>
+            <input type="number" class="form-control" id="studentPhone" placeholder="+91 - xxxxx - xxxxx" required>
           </div>
           <div class="form-group col-md-2">
             <label for="studentName">Course Id</label>
-            <input type="number" class="form-control" id="studentCourse" placeholder="Enter Course ID" value="" required>
+            <input type="number" class="form-control" id="studentCourse" placeholder="Enter Course ID" required>
           </div>
         </div>
-        <button type="submit" class="btn btn-primary" onclick="registerStudent()">Update</button>
+        <button type="submit" class="btn btn-primary" onclick="updateStudent(event)">Update</button>
         <button type="reset" class="btn btn-danger">Cancel</button>
       </form>
       <div id="successAlert" class="alert alert-success" role="alert" style="display: none;">
@@ -149,24 +153,43 @@
 
 
     <script>
-      function registerStudent() {
+      window.onload = function () {
+        const id = "<%= studentId %>";
+        if(id) {
+          loadStudent(id);
+        }
+      };
 
+      function loadStudent(id) {
+        event.preventDefault(); // stop form reload
+        console.log("Student id: " + id);
+        fetch("<%=request.getContextPath()%>/api/student?id=" + id)
+          .then(res => res.json())
+          .then(student => {
+            document.getElementById("studentName").value = student.name;
+            document.getElementById("studentEmail").value = student.email;
+            document.getElementById("studentPhone").value = student.phone;
+            document.getElementById("studentCourse").value = student.courseId;
+          })
+          .catch(err => console.error(err));
+      }
+
+      function updateStudent(event) {
         event.preventDefault(); // stop form reload
 
+        let id = "<%= studentId %>";
         let name = document.getElementById("studentName").value;
         let email = document.getElementById("studentEmail").value;
         let phone = document.getElementById("studentPhone").value;
         let course = document.getElementById("studentCourse").value;
 
-        fetch("<%=request.getContextPath()%>/api/student", {
-          method: "POST",
+        let apiParams = `?id=${id}&name=${name}&phone=${phone}&email=${email}&course=${course}`;
+
+        fetch("<%=request.getContextPath()%>/api/student" + apiParams, {
+          method: "PUT",
           headers: {
             "Content-Type": "application/x-www-form-urlencoded"
-          },
-          body: "name=" + name +
-            "&email=" + email +
-            "&phone=" + phone +
-            "&course=" + course
+          }
         })
           .then(response => response.json())
           .then(data => {
@@ -178,9 +201,10 @@
             if (data.status.toLowerCase().includes("success")) {
               document.getElementById("successAlert").innerText = data.status;
               document.getElementById("successAlert").style.display = "block";
-            } else {
-              document.getElementById("errorAlert").innerText = data.status;
-              document.getElementById("errorAlert").style.display = "block";
+
+              setTimeout(() => {
+                window.location.href = "<%=request.getContextPath()%>/student-list.jsp";
+              }, 2500);
             }
           })
           .catch(error => {

@@ -20,10 +20,10 @@ public class StudentController extends HttpServlet {
 
     @Override
     public void doGet(HttpServletRequest req, HttpServletResponse res) throws IOException {
-        res.setContentType("text/html");
-
+        res.setContentType("application/json");
+        int id = Integer.parseInt(req.getParameter("id"));
         PrintWriter out = res.getWriter();
-        out.println("<h4>GET API</h4>");
+        out.println(studentModel.getStudent(id));
     }
 
     @Override
@@ -44,26 +44,49 @@ public class StudentController extends HttpServlet {
 
     @Override
     public void doPut(HttpServletRequest req, HttpServletResponse res) throws IOException {
-        res.setContentType("text/html");
+        res.setContentType("application/json");
+
+        int id = Integer.parseInt(req.getParameter("id"));
+        String name = req.getParameter("name");
+        Long phone = Long.valueOf(req.getParameter("phone"));
+        String email = req.getParameter("email");
+        Integer courseId = Integer.parseInt(req.getParameter("course"));
+
+        String response = studentModel.updateStudent(id, name, phone, email, courseId);
+        String jsonResponse = "{\"status\": \"" + response + "\"}";
 
         PrintWriter out = res.getWriter();
-        out.println("<h4>PUT API</h4>");
+        out.println(jsonResponse);
     }
 
     @Override
     public void doPatch(HttpServletRequest req, HttpServletResponse res) throws IOException {
-        res.setContentType("text/html");
+        res.setContentType("application/json");
+
+        int id = Integer.parseInt(req.getParameter("id"));
+        String name = req.getParameter("name");
+        Long phone = Long.valueOf(req.getParameter("phone"));
+        String email = req.getParameter("email");
+        Integer courseId = Integer.parseInt(req.getParameter("course"));
+
+        String response = studentModel.updateStudent(id, name, phone, email, courseId);
+        String jsonResponse = "{\"status\": \"" + response + "\"}";
 
         PrintWriter out = res.getWriter();
-        out.println("<h4>PATCH API</h4>");
+        out.println(jsonResponse);
     }
 
     @Override
     public void doDelete(HttpServletRequest req, HttpServletResponse res) throws IOException {
-        res.setContentType("text/html");
+        res.setContentType("application/json");
+
+        int id = Integer.parseInt(req.getParameter("id"));
+
+        String response = studentModel.removeStudent(id);
+        String jsonResponse = "{\"status\": \"" + response + "\"}";
 
         PrintWriter out = res.getWriter();
-        out.println("<h4>DELETE API</h4>");
+        out.println(jsonResponse);
     }
 
 }

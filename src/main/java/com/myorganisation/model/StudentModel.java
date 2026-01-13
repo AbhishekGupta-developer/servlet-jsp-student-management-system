@@ -107,7 +107,7 @@ public class StudentModel {
             PreparedStatement preparedStatement = connection.prepareStatement(sqlQuery);
             preparedStatement.setInt(1, studentId);
             ResultSet resultSet = preparedStatement.executeQuery();
-            StringBuilder listOfJson = new StringBuilder("[");
+            StringBuilder listOfJson = new StringBuilder();
 
             while (resultSet.next()) {
                 isDataFound = true;
@@ -125,11 +125,8 @@ public class StudentModel {
                         "\"courseId\": \"" + courseId + "\"" +
                         "}";
 
-                listOfJson.append(course).append(",");
+                listOfJson.append(course);
             }
-            listOfJson.deleteCharAt(listOfJson.length() - 1);
-            listOfJson.append("]");
-
             response = listOfJson.toString();
         } catch(SQLException e) {
             isDataFound = false;
