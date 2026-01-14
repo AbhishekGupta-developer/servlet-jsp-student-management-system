@@ -176,4 +176,61 @@ public class StudentModel {
         }
     }
 
+    public String getStudentProfile(int studentId) {
+        String response = "";
+        String message = "Student not found";
+        boolean isDataFound = false;
+        String sqlQuery =
+                "SELECT s.id, s.name, s.phone, s.email, s.course_id, " +
+                "c.name AS course_name, c.duration, c.fee " +
+                "FROM students s " +
+                "LEFT JOIN courses c " +
+                "ON s.course_id = c.id " +
+                "WHERE s.id = ?";
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(sqlQuery);
+            preparedStatement.setInt(1, studentId);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            StringBuilder listOfJson = new StringBuilder();
+
+            while (resultSet.next()) {
+                isDataFound = true;
+
+                String studentName = resultSet.getString("name");
+                long studentPhone = resultSet.getLong("phone");
+                String studentEmail = resultSet.getString("email");
+                int courseId = resultSet.getInt("course_id");
+                String courseName = resultSet.getString("course_name");
+                float courseDuration = resultSet.getFloat("duration");
+                float courseFee = resultSet.getFloat("fee");
+
+                String course = "{" +
+                        "\"studentId\": \"" + studentId + "\"," +
+                        "\"studentName\": \"" + studentName + "\"," +
+                        "\"studentPhone\": \"" + studentPhone + "\"," +
+                        "\"studentEmail\": \"" + studentEmail + "\"," +
+                        "\"courseId\": \"" + courseId + "\"," +
+                        "\"courseName\": \"" + courseName + "\"," +
+                        "\"courseDuration\": \"" + courseDuration + "\"," +
+                        "\"courseFee\": \"" + courseFee + "\"" +
+                        "}";
+
+                listOfJson.append(course);
+            }
+            response = listOfJson.toString();
+        } catch(SQLException e) {
+            isDataFound = false;
+            System.out.println("An exception occurred during fetching student details: " + e.getMessage());
+            message = "An error occurred. Please try again later";
+        }
+
+        if(isDataFound) {
+            return response;
+        } else {
+            return  "{" +
+                    "\"message\": \"" + message + "\"" +
+                    "}";
+        }
+    }
+
  }

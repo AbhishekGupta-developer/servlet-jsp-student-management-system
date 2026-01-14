@@ -9,7 +9,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-@WebServlet("/api/courses")
+@WebServlet("/api/course")
 public class CourseController extends HttpServlet {
 
     private final CourseModel courseModel;
