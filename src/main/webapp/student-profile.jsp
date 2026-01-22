@@ -43,6 +43,9 @@
   </head>
 
   <body>
+    <%
+      String studentId = request.getParameter("id");
+    %>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
       <a class="navbar-brand" href="index.jsp">
         <img src="images/logo.png" width="100px" alt="logo">
@@ -96,11 +99,11 @@
 
     <!-- Profile Header -->
     <div class="profile-header text-center">
-        <div class="profile-avatar mb-3">
-            AG
+        <div class="profile-avatar mb-3" id="student-initials">
+            
         </div>
-        <h2 class="mb-1">Abhishek Gupta</h2>
-        <p class="mb-0">Student ID: 11</p>
+        <h2 class="mb-1" id="studentName"></h2>
+        <p class="mb-0">Student ID: <span id="studentId"></span></p>
     </div>
 
     <!-- Content Section -->
@@ -114,10 +117,10 @@
                         Student Information
                     </div>
                     <div class="card-body">
-                        <p><strong>Full Name:</strong> Abhishek Gupta</p>
-                        <p><strong>Email:</strong> abhishekg.ducat@gmail.com</p>
-                        <p><strong>Phone:</strong> 8840204441</p>
-                        <p><strong>Student ID:</strong> 11</p>
+                        <p><strong>Full Name:</strong> <span id="student-info-name"></span></p>
+                        <p><strong>Email:</strong> <span id="student-info-email"></span></p>
+                        <p><strong>Phone:</strong> <span id="student-info-phone"></span></p>
+                        <p><strong>Student ID:</strong> <span id="student-info-student-id"></span></p>
                     </div>
                 </div>
             </div>
@@ -129,10 +132,10 @@
                         Course Information
                     </div>
                     <div class="card-body">
-                        <p><strong>Course Name:</strong> SPRING BOOT AND MICROSERVICES</p>
-                        <p><strong>Course ID:</strong> 4</p>
-                        <p><strong>Duration:</strong> 12 Months</p>
-                        <p><strong>Fee:</strong> ₹250,000</p>
+                        <p><strong>Course Name:</strong> <span id="course-info-name"></span></p>
+                        <p><strong>Course ID:</strong> <span id="course-info-id"></span></p>
+                        <p><strong>Duration:</strong> <span id="course-info-duration"></span> Months</p>
+                        <p><strong>Fee:</strong> ₹<span id="course-info-fee"></span></p>
                     </div>
                 </div>
             </div>
@@ -142,8 +145,8 @@
         <!-- Action Buttons -->
         <div class="row mt-4">
             <div class="col text-center">
-                <button class="btn btn-primary me-2">Edit Profile</button>
-                <button class="btn btn-outline-secondary">Download Details</button>
+                <button class="btn btn-primary me-2" onClick="updateProfile(<%= studentId %>)">Update Profile</button>
+                <button class="btn btn-outline-secondary" onclick="downloadPage()">Download Details</button>
             </div>
         </div>
     </div>
@@ -198,6 +201,55 @@
         </div>
       </div>
     </footer>
+
+    <script>
+      window.onload = function () {
+        const id = "<%= studentId %>";
+        if(id) {
+          loadStudentProfile(id);
+        }
+      };
+
+      function loadStudentProfile(id) {
+        event.preventDefault(); // stop form reload
+        fetch("<%=request.getContextPath()%>/api/student/profile?id=" + id)
+          .then(res => res.json())
+          .then(student => {
+
+            document.getElementById("student-initials").innerHTML = getInitials(student.studentName);
+            document.getElementById("studentId").innerHTML = id;
+            document.getElementById("studentName").innerHTML = student.studentName;
+
+            document.getElementById("student-info-name").innerHTML = student.studentName;
+            document.getElementById("student-info-email").innerHTML = student.studentEmail;
+            document.getElementById("student-info-phone").innerHTML = student.studentPhone;
+            document.getElementById("student-info-student-id").innerHTML = id;
+
+            document.getElementById("course-info-name").innerHTML = student.courseName;
+            document.getElementById("course-info-id").innerHTML = student.courseId;
+            document.getElementById("course-info-duration").innerHTML = student.courseDuration;
+            document.getElementById("course-info-fee").innerHTML = student.courseFee;
+          })
+          .catch(err => console.error(err));
+      }
+
+      function getInitials(name) {
+        return name
+          .split(" ")
+          .map(word => word[0])
+          .join("");
+      }
+
+      function updateProfile(id) {
+        event.preventDefault(); // stop form reload
+        window.location.href = "<%=request.getContextPath()%>/student-update.jsp?id=" + id;
+      }
+
+      function downloadPage() {
+        window.alert("Coming soon!");
+        return;
+      }
+    </script>
   </body>
 
   </html>
