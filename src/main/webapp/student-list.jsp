@@ -32,14 +32,18 @@
           <li class="nav-item">
             <a class="nav-link" href="index.jsp">Home <span class="sr-only">(current)</span></a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="student-register.jsp">Register Student <span class="sr-only">(current)</span></a>
-          </li>
-          <li class="nav-item active">
-            <a class="nav-link" href="about.jsp">Student List</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="contact.jsp">Contact Us</a>
+          <li class="nav-item dropdown active">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+              aria-haspopup="true" aria-expanded="false">
+              Student
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="student-register.jsp">Register new student</a>
+              <a class="dropdown-item" href="student-list.jsp">Students list</a>
+              <a class="dropdown-item" href="student-profile.jsp">Student profile</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="student-update.jsp">Update student details</a>
+            </div>
           </li>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
@@ -55,11 +59,15 @@
               <a class="dropdown-item" href="#">DSA with Java</a>
             </div>
           </li>
-          <!--
-                <li class="nav-item">
-                    <a class="nav-link disabled" href="#">Disabled</a>
-                </li>
-                -->
+
+          <li class="nav-item">
+            <a class="nav-link" href="about.jsp">About</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="contact.jsp">Contact Us</a>
+          </li>
+
+
         </ul>
         <form class="form-inline my-2 my-lg-0">
           <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">

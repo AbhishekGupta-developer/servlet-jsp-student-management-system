@@ -2,7 +2,7 @@
   <html>
 
   <head>
-    <title>Register student</title>
+    <title>Home</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
       integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
@@ -32,7 +32,7 @@
           <li class="nav-item">
             <a class="nav-link" href="index.jsp">Home <span class="sr-only">(current)</span></a>
           </li>
-          <li class="nav-item dropdown active">
+          <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
               aria-haspopup="true" aria-expanded="false">
               Student
@@ -63,7 +63,7 @@
           <li class="nav-item">
             <a class="nav-link" href="about.jsp">About</a>
           </li>
-          <li class="nav-item">
+          <li class="nav-item active">
             <a class="nav-link" href="contact.jsp">Contact Us</a>
           </li>
 
@@ -75,49 +75,96 @@
         </form>
       </div>
     </nav>
-    <div class="container">
-      <br>
-      <h1>Register student</h1>
-      <form>
-        <div class="form-row">
-          <div class="form-group col-md-6">
-            <label for="studentName">Name</label>
-            <input type="text" class="form-control" id="studentName" placeholder="Enter your full name" required>
-          </div>
-          <div class="form-group col-md-6">
-            <label for="studentEmail">Email</label>
-            <input type="email" class="form-control" id="studentEmail" placeholder="Enter your email" required>
-          </div>
+    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+      <ol class="carousel-indicators">
+        <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+        <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+        <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+      </ol>
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <img id="carousel-image" class="d-block w-100" src="images/img1.jpg" alt="First slide">
         </div>
-        <div class="form-row">
-          <div class="form-group col-md-4">
-            <label for="studentPhone">Phone</label>
-            <input type="number" class="form-control" id="studentPhone" placeholder="+91 - xxxxx - xxxxx" required>
-          </div>
-          <div class="form-group col-md-2">
-            <label for="studentName">Course Id</label>
-            <input type="number" class="form-control" id="studentCourse" placeholder="Enter Course ID" required>
-          </div>
+        <div class="carousel-item">
+          <img id="carousel-image" class="d-block w-100" src="images/img2.jpg" alt="Second slide">
         </div>
-        <button type="submit" class="btn btn-primary" onclick="registerStudent()">Register</button>
-        <button type="reset" class="btn btn-danger">Cancel</button>
-      </form>
-      <div id="successAlert" class="alert alert-success" role="alert" style="display: none;">
+        <div class="carousel-item">
+          <img id="carousel-image" class="d-block w-100" src="images/img3.jpg" alt="Third slide">
+        </div>
       </div>
-      <div id="errorAlert" class="alert alert-danger" role="alert" style="display: none;">
-      </div>
-      <br><br><br><br><br><br>
+      <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+      </a>
+      <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+      </a>
     </div>
+    <div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
+      <h1 class="display-4">Fee Structure</h1>
+      <p class="lead"
+        style="width: 50%; text-align: center; position: relative; left: 50%; transform: translateX(-50%)">
+        Our institute offers practical, job-oriented courses designed to build strong technical and professional skills.
+        All courses are managed through a Student Management System for smooth learning, tracking, and progress
+        monitoring.
+      </p>
+    </div>
+    <div class="container">
+      <div class="card-deck mb-3 text-center">
+        <div class="card mb-4 box-shadow">
+          <div class="card-header">
+            <h4 class="my-0 font-weight-normal">Gold</h4>
+          </div>
+          <div class="card-body">
+            <h1 class="card-title pricing-card-title">₹9,999 <small class="text-muted">/ mo</small></h1>
+            <ul class="list-unstyled mt-3 mb-4">
+              <li>4 Classes per week</li>
+              <li>Course content with Notes</li>
+              <li>Email support</li>
+              <li>1 Student</li>
+            </ul>
+            <button type="button" class="btn btn-lg btn-block btn-outline-primary">Sign up for free</button>
+          </div>
+        </div>
+        <div class="card mb-4 box-shadow">
+          <div class="card-header">
+            <h4 class="my-0 font-weight-normal">Pro</h4>
+          </div>
+          <div class="card-body">
+            <h1 class="card-title pricing-card-title">₹19,999 <small class="text-muted">/ mo</small></h1>
+            <ul class="list-unstyled mt-3 mb-4">
+              <li>6 Classes per week</li>
+              <li>Course content with Notes</li>
+              <li>Email support</li>
+              <li>1 Student</li>
+            </ul>
+            <button type="button" class="btn btn-lg btn-block btn-primary">Get started</button>
+          </div>
+        </div>
+        <div class="card mb-4 box-shadow">
+          <div class="card-header">
+            <h4 class="my-0 font-weight-normal">Enterprise</h4>
+          </div>
+          <div class="card-body">
+            <h1 class="card-title pricing-card-title">₹99,999 <small class="text-muted">/ mo</small></h1>
+            <ul class="list-unstyled mt-3 mb-4">
+              <li>6 Classes per week</li>
+              <li>Course content with Notes</li>
+              <li>Email support</li>
+              <li>100 Employees</li>
+            </ul>
+            <button type="button" class="btn btn-lg btn-block btn-primary">Contact us</button>
+          </div>
+        </div>
+      </div>
 
-    <footer class="pt-4 my-md-5 pt-md-5 border-top">
-      <div class="container">
+      <footer class="pt-4 my-md-5 pt-md-5 border-top">
         <div class="row">
-
           <div class="col-12 col-md">
-            <img class="mb-2" src="images/logo.png" alt="Logo" width="100">
+            <img class="mb-2" src="images/logo.png" alt="" width="100">
             <small class="d-block mb-3 text-muted">© 2026 - 2030</small>
           </div>
-
           <div class="col-6 col-md">
             <h5>Features</h5>
             <ul class="list-unstyled text-small">
@@ -129,7 +176,6 @@
               <li><a class="text-muted" href="#">Last time</a></li>
             </ul>
           </div>
-
           <div class="col-6 col-md">
             <h5>Resources</h5>
             <ul class="list-unstyled text-small">
@@ -139,7 +185,6 @@
               <li><a class="text-muted" href="#">Final resource</a></li>
             </ul>
           </div>
-
           <div class="col-6 col-md">
             <h5>About</h5>
             <ul class="list-unstyled text-small">
@@ -149,54 +194,10 @@
               <li><a class="text-muted" href="#">Terms</a></li>
             </ul>
           </div>
-
         </div>
-      </div>
-    </footer>
+      </footer>
+    </div>
 
-
-    <script>
-      function registerStudent() {
-
-        event.preventDefault(); // stop form reload
-
-        let name = document.getElementById("studentName").value;
-        let email = document.getElementById("studentEmail").value;
-        let phone = document.getElementById("studentPhone").value;
-        let course = document.getElementById("studentCourse").value;
-
-        fetch("<%=request.getContextPath()%>/api/student", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/x-www-form-urlencoded"
-          },
-          body: "name=" + name +
-            "&email=" + email +
-            "&phone=" + phone +
-            "&course=" + course
-        })
-          .then(response => response.json())
-          .then(data => {
-
-            // hide both alerts first
-            document.getElementById("successAlert").style.display = "none";
-            document.getElementById("errorAlert").style.display = "none";
-
-            if (data.status.toLowerCase().includes("success")) {
-              document.getElementById("successAlert").innerText = data.status;
-              document.getElementById("successAlert").style.display = "block";
-            } else {
-              document.getElementById("errorAlert").innerText = data.status;
-              document.getElementById("errorAlert").style.display = "block";
-            }
-          })
-          .catch(error => {
-            document.getElementById("errorAlert").innerText = "Something went wrong!";
-            document.getElementById("errorAlert").style.display = "block";
-            console.log("Error:", error);
-          });
-      }
-    </script>
   </body>
 
   </html>

@@ -32,14 +32,18 @@
           <li class="nav-item">
             <a class="nav-link" href="index.jsp">Home <span class="sr-only">(current)</span></a>
           </li>
-          <li class="nav-item active">
-            <a class="nav-link" href="student-register.jsp">Register Student <span class="sr-only">(current)</span></a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="about.jsp">About</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="contact.jsp">Contact Us</a>
+          <li class="nav-item dropdown active">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+              aria-haspopup="true" aria-expanded="false">
+              Student
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="student-register.jsp">Register new student</a>
+              <a class="dropdown-item" href="student-list.jsp">Students list</a>
+              <a class="dropdown-item" href="student-profile.jsp">Student profile</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="student-update.jsp">Update student details</a>
+            </div>
           </li>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
@@ -55,9 +59,15 @@
               <a class="dropdown-item" href="#">DSA with Java</a>
             </div>
           </li>
-          <!-- <li class="nav-item">
-              <a class="nav-link disabled" href="#">Disabled</a>
-          </li> -->
+
+          <li class="nav-item">
+            <a class="nav-link" href="about.jsp">About</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="contact.jsp">Contact Us</a>
+          </li>
+
+
         </ul>
         <form class="form-inline my-2 my-lg-0">
           <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
@@ -66,46 +76,59 @@
       </div>
     </nav>
     <div class="container">
-      <%
-        String studentId = request.getParameter("id");
-      %>
-      <br>
-      <h1>Update Student</h1>
-    
-      <form>
-        <div class="form-row">
-          <div class="form-group col-md-12 alert alert-primary" role="alert"><h3 style="padding-left: 10px;">Student ID: <%= studentId %></h3></div>
+      <% String studentId=request.getParameter("id"); %>
+        <br>
+        <h1>Update Student</h1>
+        <br>
+        <form>
+          <div class="form-row">
+            <div class="form-group col-md-2">
+              <!-- <label for="studentName">Student ID</label> -->
+              <input type="number" class="form-control" id="search-student-id" placeholder="Enter Student ID" required>
+            </div>
+            <div class="form-group col-md-2">
+              <button type="submit" class="btn btn-primary"
+                onclick='loadStudent(document.getElementById("search-student-id").value)'>Search</button>
+            </div>
+          </div>
+        </form>
+
+        <form>
+          <div class="form-row">
+            <div class="form-group col-md-12 alert alert-primary" role="alert">
+              <h3 style="padding-left: 10px;">Student ID: <span id="finded-student-id">NULL</span></h3>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label for="studentName">Name</label>
+              <input type="text" class="form-control" id="studentName" placeholder="Enter your full name" required>
+            </div>
+            <div class="form-group col-md-6">
+              <label for="studentEmail">Email</label>
+              <input type="email" class="form-control" id="studentEmail" placeholder="Enter your email" required>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group col-md-4">
+              <label for="studentPhone">Phone</label>
+              <input type="number" class="form-control" id="studentPhone" placeholder="+91 - xxxxx - xxxxx" required>
+            </div>
+            <div class="form-group col-md-2">
+              <label for="studentName">Course Id</label>
+              <input type="number" class="form-control" id="studentCourse" placeholder="Enter Course ID" required>
+            </div>
+          </div>
+          <button type="submit" class="btn btn-primary" onclick="updateStudent(event)">Update</button>
+          <button type="reset" class="btn btn-danger">Cancel</button>
+        </form>
+        <div id="successAlert" class="alert alert-success" role="alert" style="display: none;">
         </div>
-        <div class="form-row">
-          <div class="form-group col-md-6">
-            <label for="studentName">Name</label>
-            <input type="text" class="form-control" id="studentName" placeholder="Enter your full name" required>
-          </div>
-          <div class="form-group col-md-6">
-            <label for="studentEmail">Email</label>
-            <input type="email" class="form-control" id="studentEmail" placeholder="Enter your email" required>
-          </div>
+        <div id="errorAlert" class="alert alert-danger" role="alert" style="display: none;">
         </div>
-        <div class="form-row">
-          <div class="form-group col-md-4">
-            <label for="studentPhone">Phone</label>
-            <input type="number" class="form-control" id="studentPhone" placeholder="+91 - xxxxx - xxxxx" required>
-          </div>
-          <div class="form-group col-md-2">
-            <label for="studentName">Course Id</label>
-            <input type="number" class="form-control" id="studentCourse" placeholder="Enter Course ID" required>
-          </div>
-        </div>
-        <button type="submit" class="btn btn-primary" onclick="updateStudent(event)">Update</button>
-        <button type="reset" class="btn btn-danger">Cancel</button>
-      </form>
-      <div id="successAlert" class="alert alert-success" role="alert" style="display: none;">
-      </div>
-      <div id="errorAlert" class="alert alert-danger" role="alert" style="display: none;">
-      </div>
-      <br><br><br><br><br><br>
+        <br><br><br><br><br><br>
     </div>
-    
+
     <footer class="pt-4 my-md-5 pt-md-5 border-top">
       <div class="container">
         <div class="row">
@@ -155,7 +178,7 @@
     <script>
       window.onload = function () {
         const id = "<%= studentId %>";
-        if(id) {
+        if (id) {
           loadStudent(id);
         }
       };
@@ -166,6 +189,7 @@
         fetch("<%=request.getContextPath()%>/api/student?id=" + id)
           .then(res => res.json())
           .then(student => {
+            document.getElementById("finded-student-id").innerHTML = id;
             document.getElementById("studentName").value = student.name;
             document.getElementById("studentEmail").value = student.email;
             document.getElementById("studentPhone").value = student.phone;
